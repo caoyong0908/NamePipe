@@ -1,0 +1,15 @@
+﻿<Window x:Class="Server.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Server.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="300" WindowStartupLocation="CenterScreen">
+    <StackPanel Orientation="Vertical">
+        <Button Name="btnStart" Width="100" Content="Start Server" HorizontalAlignment="Left" Click="btnStart_Click"></Button>
+        <TextBox Name="txtMsg" Width="140" HorizontalAlignment="Left"></TextBox>
+        <Button Name="btnSend" Width="100" Content="Send" HorizontalAlignment="Left" Click="btnSend_Click"></Button>
+        <TextBlock Name="txtContent" Width="Auto" Height="Auto"></TextBlock>
+    </StackPanel>
+</Window>
