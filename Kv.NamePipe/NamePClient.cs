@@ -29,6 +29,8 @@ namespace Kv.NamePipe
 
         public string NamePipeName { get; }
 
+        public bool SendOnly { get; set; }
+
         public NamePClient(string pipeName)
         {
             _readEvent = new AutoResetEvent(false);
@@ -60,6 +62,10 @@ namespace Kv.NamePipe
 
         private void Read()
         {
+            if (SendOnly)
+            {
+                return;
+            }
             while (true)
             {
                 if (!_readFlag)
@@ -98,6 +104,10 @@ namespace Kv.NamePipe
 
             _writer.WriteLine(msg);
             _writer.Flush();
+            if (SendOnly)
+            {
+                return;
+            }
             _readFlag = true;
             _readEvent.Set();
         }

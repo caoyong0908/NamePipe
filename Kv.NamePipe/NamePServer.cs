@@ -25,6 +25,8 @@ namespace Kv.NamePipe
 
         public string PipeName { get; }
 
+        public bool ReadOnly { get; set; }
+
         public delegate void DelegateMessage(string content);
         public event DelegateMessage EventReceivedMessage;
 
@@ -63,7 +65,7 @@ namespace Kv.NamePipe
                     {
                         break;
                     }
-                    if (_sendFlag)
+                    if (_sendFlag && !ReadOnly)
                     {
                         _sendEvent.WaitOne();
                     }
@@ -90,6 +92,10 @@ namespace Kv.NamePipe
 
         public void Send(string msg)
         {
+            if (ReadOnly)
+            {
+                return;
+            }
             if (!_sendFlag)
             {
                 return;
