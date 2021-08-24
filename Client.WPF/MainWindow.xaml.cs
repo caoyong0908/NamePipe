@@ -30,7 +30,7 @@ namespace Client.WPF
         private void BtnConnect_OnClick(object sender, RoutedEventArgs e)
         {
             clent = new NamePClient("test");
-            clent.SendOnly = true;
+            //clent.SendOnly = true;
             clent.Connect();
             clent.EventConnect += (result, msg) =>
             {

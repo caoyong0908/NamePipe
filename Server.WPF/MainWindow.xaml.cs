@@ -29,7 +29,7 @@ namespace Server.WPF
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             server = new NamePServer("test");
-            server.ReadOnly = true;
+            //server.ReadOnly = true;
             server.Start();
             server.EventClientDisconnect += () =>
             {

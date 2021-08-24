@@ -30,9 +30,10 @@ namespace Kv.NamePipe
         public delegate void DelegateMessage(string content);
         public event DelegateMessage EventReceivedMessage;
 
-        public delegate void DelegateClientDisconnect();
+        public delegate void DelegateClientConnection();
 
-        public event DelegateClientDisconnect EventClientDisconnect;
+        public event DelegateClientConnection EventClientDisconnect;
+        public event DelegateClientConnection EventClientConnected;
 
         public NamePServer(string name, int maxServerCount = 100)
         {
@@ -55,6 +56,7 @@ namespace Kv.NamePipe
             {
                 _server = new NamedPipeServerStream(PipeName, PipeDirection.InOut, MaxServerCount);
                 _server.WaitForConnection();
+                EventClientConnected?.Invoke();
                 _clientConnected = true;
                 _writer = new StreamWriter(_server);
                 _reader = new StreamReader(_server);
